@@ -2,7 +2,7 @@
 
 Maquetado
   Estimacion: 30 minutos
-  Duracion:
+  Duracion: 10 minutos
 
 Funcion de busqueda
   Estimacion: 1 hora
