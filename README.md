@@ -10,7 +10,7 @@ Funcion de busqueda
 
 Cargar los datos en cada carta
   Estimacion: 30 minutos
-  Duracion:
+  Duracion: 30 minutos
 
 Sistema de paginacion
   Estimacion: 2 horas
