@@ -1,13 +1,109 @@
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+  padding: 15px;
 }
 .pokemon-card {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(126, 9, 9);
+  background-color: #d9d9d9;
   border-radius: 20px;
+  color: #0e0e0e;
+  font-weight: 500;
+}
+body {
+  font-family: "Anek Malayalam", sans-serif;
+  margin: 0;
+}
+.navegation-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+img {
+  size: 4px;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background: linear-gradient(#cc0505, #8b0c0c);
+  padding: 30px;
+  position: relative;
+}
+.logo {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+}
+.search-input {
+  border: 5px solid rgb(11, 11, 11);
+  border-radius: 10px;
+  padding: 10px;
+  content: "";
+}
+.search-button-icon {
+  font-weight: 500;
+  color: #0b0b0b;
+}
+.search-container {
+  position: relative;
+  z-index: 1;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  right: 20px;
+}
+.search-button {
+  background-color: rgb(236, 236, 236);
+  border: 3px solid black;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.25em;
+  cursor: pointer;
+}
+.search-container::before,
+.search-container::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(#dc0707, #b00505);
+  width: 120%;
+  height: 75%;
+  border: 3px solid black;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 15px 15px 0 0;
+  z-index: -1;
+}
+.search-container::after {
+  background: linear-gradient(#d8d8d8, #efebeb);
+  top: 40%;
+  border-radius: 0 0 15px 15px;
+}
+.pokemon-card img::after {
+  content: "";
+  position: absolute;
+  background: linear-gradient(#dc0707, #b00505);
+  width: 120%;
+  height: 75%;
+  border: 3px solid black;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 15px 15px 0 0;
+}
+.pokemon-card img {
+  position: relative;
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 1280px) {
 }

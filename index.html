@@ -4,15 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokemon Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <img class="logo" src="" alt="" /><input
-        class="search-input"
-        type="text"
-      />
-      <button class="search-button"></button>
+      <img class="logo" src="images/pokemon-icon.svg" alt="pokemon logo" />
+      <div class="search-container">
+        <input
+          class="search-input"
+          placeholder="Search a pokemon..."
+          type="text"
+        />
+        <button class="search-button">
+          <i class="fa-solid fa-magnifying-glass search-button-icon"></i>
+        </button>
+      </div>
     </header>
     <main>
       <div class="cards-container"></div>
@@ -22,6 +34,7 @@
         ><button class="next-button">Next</button>
       </div>
     </main>
+    <script src="https://kit.fontawesome.com/b89abaf60d.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
