@@ -23,10 +23,12 @@ async function setPokemonCard(url, name) {
   cards.append(div);
 
   let pokemonData = await getPokemonInformation(url);
-  let pokemonName = (document.createElement("span").textContent =
-    getStringUpperCase(name));
+
+  let pokemonName = document.createElement("span");
   let pokemonImg = document.createElement("img");
-  pokemonImg.src = pokemonData.sprites.front_default;
+
+  pokemonName.textContent = getStringUpperCase(name);
+  pokemonImg.src = pokemonData.sprites.other["official-artwork"].front_default;
 
   div.append(pokemonImg);
   div.append(pokemonName);
