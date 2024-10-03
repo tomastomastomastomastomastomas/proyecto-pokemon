@@ -1,4 +1,4 @@
-const pokemonTypes = {
+export const pokemonTypes = {
   normal: "fa-circle",
   fire: "fa-fire-flame-curved",
   water: "fa-droplet",

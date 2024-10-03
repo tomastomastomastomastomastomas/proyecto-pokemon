@@ -2,7 +2,7 @@
 
 Maquetado
   Estimacion: 30 minutos
-  Duracion:
+  Duracion: 10 minutos
 
 Funcion de busqueda
   Estimacion: 1 hora
@@ -10,7 +10,7 @@ Funcion de busqueda
 
 Cargar los datos en cada carta
   Estimacion: 30 minutos
-  Duracion:
+  Duracion: 30 minutos
 
 Sistema de paginacion
   Estimacion: 2 horas
