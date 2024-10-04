@@ -2,6 +2,11 @@ const defaultUrl = "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=25";
 const completeDataUrl =
   "https://pokeapi.co/api/v2/pokemon/?limit=15000&offset=0";
 const cards = document.querySelector(".cards-container");
+const searchButton = document.querySelector(".search-button");
+const searchInput = document.querySelector(".search-input");
+
+const globalPokemonData = getPokemonInformation(completeDataUrl);
+const actualPokemons = [];
 
 import { pokemonTypes } from "./global-data.js";
 function getPokemonInformation(url) {
@@ -12,6 +17,13 @@ function getPokemonInformation(url) {
 
 document.addEventListener("DOMContentLoaded", function () {
   getPokemonInformation(defaultUrl).then((data) => setPokemonCards(data));
+});
+
+searchButton.addEventListener("click", function () {
+  actualPokemons = globalPokemonData.filter(function (value) {
+    return value.name.includes(searchInput.value);
+  });
+  actualPokemons.offset = 0;
 });
 
 async function setPokemonCards(pokemons) {
@@ -45,7 +57,6 @@ function setPokemonTypes(pokemonData) {
   getPokemonTypes(pokemonData).forEach(function (pokemonType) {
     let container = document.createElement("div");
     let type = document.createElement("span");
-    let icon = document.createElement("i");
 
     container.classList.add("type-container");
 
@@ -61,7 +72,6 @@ function getPokemonTypes(pokemonData) {
     return type.type.name;
   });
 }
-function getTypeIcon(icon) {}
 
 function getStringUpperCase(string) {
   let newString = string[0].toUpperCase();
