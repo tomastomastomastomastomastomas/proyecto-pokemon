@@ -6,7 +6,7 @@ const searchButton = document.querySelector(".search-button");
 const searchInput = document.querySelector(".search-input");
 
 const globalPokemonData = getPokemonInformation(completeDataUrl);
-const actualPokemons = [];
+let actualPokemons = [];
 
 import { pokemonTypes } from "./global-data.js";
 function getPokemonInformation(url) {
@@ -20,10 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 searchButton.addEventListener("click", function () {
-  actualPokemons = globalPokemonData.filter(function (value) {
-    return value.name.includes(searchInput.value);
+  console.log(globalPokemonData.results);
+  actualPokemons = getPokemonInformation(completeDataUrl).then((data) => {
+    actualPokemons.pokemons = data.results.filter(function (value) {
+      return value.name.includes(searchInput.value);
+    });
+    actualPokemons.offset = 0;
   });
-  actualPokemons.offset = 0;
 });
 
 async function setPokemonCards(pokemons) {
