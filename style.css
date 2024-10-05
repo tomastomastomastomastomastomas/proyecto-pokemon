@@ -107,14 +107,15 @@ display: flex;
 .pokemon-card::after {
   content: "";
   position: absolute;
-  background-color: #bcbcbc;
-  width: 80px;
-  height: 35px;
-  top: 24%;
+  background-color: #aeacac;
+  width: 119px;
+  height: 55px;
+  top: 29%;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 100%;
   z-index: 0;
+  filter: blur(5px);
 }
 
 .navegation-container {

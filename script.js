@@ -43,7 +43,6 @@ searchButton.addEventListener("click", function () {
 });
 
 async function setPokemonCards(pokemons) {
-  console.log(pokemons)
   cards.innerHTML = "";
   for (
     let i = pokemons.offset * 25;
@@ -107,14 +106,9 @@ function getStringUpperCase(string) {
 }
 
 nextButton.addEventListener("click", function () {
-  actualPokemons.offset += 1;
   if (actualPokemons.offset < Math.ceil(actualPokemons.pokemons.length / 25)) {
-    console.log(actualPokemons.offset)
-    console.log(actualPokemons, "hola")
+    actualPokemons.offset += 1;
     setPokemonCards(actualPokemons);
-  }
-  else{
-    actualPokemons.offset -= 1
   }
 });
 
