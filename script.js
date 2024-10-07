@@ -82,6 +82,8 @@ async function setPokemonCards(pokemons) {
   backButton.style.opacity = "50%";
   if (pokemons.offset === Math.ceil(pokemons.pokemons.length / 25) - 1) {
     nextButton.style.opacity = "50%";
+  } else {
+    nextButton.style.opacity = "100%";
   }
   let pokemonPromises = [];
   for (let i = pokemons.offset * 25; i < pokemons.offset * 25 + 25; i++) {
