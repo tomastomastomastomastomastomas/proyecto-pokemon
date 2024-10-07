@@ -124,6 +124,16 @@ main {
   justify-content: space-between;
   align-items: center;
 }
+.pokemon-card {
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+.pokemon-card:hover > span {
+  color: #fff;
+}
+.pokemon-card:hover::after {
+  background-color: transparent;
+}
 .pokemon-card img {
   z-index: 1;
   width: 100px;
@@ -199,6 +209,7 @@ main {
 .fairy {
   background-color: #d685ad;
 }
+
 .back-button,
 .next-button {
   position: fixed;
@@ -281,7 +292,7 @@ main {
   .back-button,
   .next-button {
     position: absolute;
-    top: 47%;
+    top: 30px;
     transition: all 0.1s ease-in;
   }
   .back-button:hover,

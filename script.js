@@ -7,20 +7,21 @@ const searchInput = document.querySelector(".search-input");
 const backButton = document.querySelector(".back-button");
 const nextButton = document.querySelector(".next-button");
 const loading = document.querySelector(".loading");
+const main = document.querySelector("main");
+
 let globalPokemonData = [];
-getPokemonInformation(completeDataUrl)
-  .then((data) => {
-    globalPokemonData = data;
-  })
-  .catch("Error fetching the api");
+getPokemonInformation(completeDataUrl).then((data) => {
+  globalPokemonData = data;
+});
 let actualPokemons = { pokemons: [], offset: 0 };
+
+import { pokemonTypes } from "./global-data.js";
 
 function getPokemonInformation(url) {
   return fetch(url)
     .then((response) => response.json())
     .catch("Error fetching the api");
 }
-//
 
 document.addEventListener("DOMContentLoaded", function () {
   getPokemonInformation(completeDataUrl).then((data) => {
@@ -73,7 +74,7 @@ async function setPokemonCard(url, name) {
       pokemonName.textContent = getStringUpperCase(name);
       pokemonImg.src =
         pokemonData.sprites.other["official-artwork"].front_default;
-      let pokemonType = setPokemonTypes(pokemonData);
+      let pokemonType = setPokemonTypes(pokemonData, div);
 
       div.append(pokemonImg);
       div.append(pokemonName);
@@ -83,10 +84,9 @@ async function setPokemonCard(url, name) {
   });
 }
 
-function setPokemonTypes(pokemonData) {
+function setPokemonTypes(pokemonData, div) {
   let pokemonTypes = document.createElement("div");
   pokemonTypes.classList.add("types-container");
-
   getPokemonTypes(pokemonData).forEach(function (pokemonType) {
     let container = document.createElement("div");
     let type = document.createElement("span");
@@ -98,6 +98,7 @@ function setPokemonTypes(pokemonData) {
     container.append(type);
     pokemonTypes.append(container);
   });
+  setOverColor(pokemonTypes, div);
   return pokemonTypes;
 }
 function getPokemonTypes(pokemonData) {
@@ -115,11 +116,12 @@ function getStringUpperCase(string) {
 }
 
 nextButton.addEventListener("click", function () {
-  actualPokemons.offset += 1;
-  if (actualPokemons.offset < Math.ceil(actualPokemons.pokemons.length / 25)) {
+  if (
+    actualPokemons.offset <
+    Math.ceil(actualPokemons.pokemons.length / 25) - 1
+  ) {
+    actualPokemons.offset += 1;
     setPokemonCards(actualPokemons);
-  } else {
-    actualPokemons.offset -= 1;
   }
 });
 
@@ -135,3 +137,21 @@ searchInput.addEventListener("keypress", function (e) {
     searchPokemon();
   }
 });
+
+function setOverColor(pokemonTypesElement, div) {
+  div.addEventListener("mouseover", function (e) {
+    if (pokemonTypesElement.children.length === 2) {
+      div.style.background = `linear-gradient(to bottom left, ${
+        pokemonTypes[pokemonTypesElement.children[1].textContent.toLowerCase()]
+      }, ${
+        pokemonTypes[pokemonTypesElement.children[0].textContent.toLowerCase()]
+      })`;
+    } else {
+      div.style.background =
+        pokemonTypes[pokemonTypesElement.children[0].textContent.toLowerCase()];
+    }
+  });
+  div.addEventListener("mouseleave", function () {
+    div.removeAttribute("style");
+  });
+}
