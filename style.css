@@ -87,6 +87,13 @@ main {
   grid-gap: 20px;
   padding: 0px;
 }
+
+.navegation-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .pokemon-card {
   width: 200px;
   display: flex;
@@ -100,6 +107,8 @@ main {
   position: relative;
   padding: 10px 0 30px 0;
   gap: 5px;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
 }
 .pokemon-card > span {
   font-weight: 700;
@@ -118,16 +127,6 @@ main {
   z-index: 0;
   filter: blur(5px);
 }
-
-.navegation-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.pokemon-card {
-  cursor: pointer;
-  transition: all 0.1s ease-in;
-}
 .pokemon-card:hover > span {
   color: #fff;
 }
@@ -139,9 +138,7 @@ main {
   width: 100px;
   height: 100px;
 }
-.dark-icon {
-  --fa-rotate-angle: 290deg;
-}
+
 .types-container {
   display: flex;
   align-items: center;
@@ -226,6 +223,7 @@ main {
 .next-button {
   right: 10px;
 }
+
 .loading {
   z-index: 3;
   position: absolute;
@@ -243,12 +241,94 @@ main {
   overflow: hidden;
 }
 .loading > img {
-  position: absolute;
+  position: fixed;
   top: 200px;
   left: 45%;
   transform: translateX(-50%);
   animation: rotate 1.2s infinite;
+  height: 60px;
+  min-width: 60px;
 }
+
+.panel-back {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: transparent;
+  z-index: 3;
+}
+.panel-information-container {
+  display: flex;
+  position: fixed;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 245px;
+  width: 60%;
+  max-width: 550px;
+  min-height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  background-color: #f4f4f4;
+  box-shadow: 5px 5px 5px #13131380;
+  padding: 10px;
+  border-radius: 10px;
+  animation: fade-up 0.4s;
+}
+.panel-information {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+@keyframes fade-up {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.panel-information > span {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+.panel-information > img {
+  width: 70%;
+  max-width: 290px;
+}
+.panel-types {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.panel-main-info {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.panel-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  font-size: 1.25em;
+}
+.blur {
+  filter: blur(10px);
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);

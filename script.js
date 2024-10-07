@@ -8,6 +8,10 @@ const backButton = document.querySelector(".back-button");
 const nextButton = document.querySelector(".next-button");
 const loading = document.querySelector(".loading");
 const main = document.querySelector("main");
+const header = document.querySelector("header");
+const panel = document.querySelector(".panel-information-container");
+const closePanelBtn = document.querySelector(".panel-close-btn");
+const panelBack = document.querySelector(".panel-back");
 
 let globalPokemonData = [];
 getPokemonInformation(completeDataUrl).then((data) => {
@@ -64,7 +68,7 @@ async function setPokemonCards(pokemons) {
 }
 
 async function setPokemonCard(url, name) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     let div = document.createElement("div");
     div.classList.add("pokemon-card");
     cards.append(div);
@@ -75,16 +79,15 @@ async function setPokemonCard(url, name) {
       pokemonImg.src =
         pokemonData.sprites.other["official-artwork"].front_default;
       let pokemonType = setPokemonTypes(pokemonData, div);
-
-      div.append(pokemonImg);
-      div.append(pokemonName);
-      div.append(pokemonType);
+      setOverColor(pokemonType, div);
+      div.append(pokemonImg, pokemonName, pokemonType);
       resolve();
+      setPanelInformation(div, pokemonData, name);
     });
   });
 }
 
-function setPokemonTypes(pokemonData, div) {
+function setPokemonTypes(pokemonData) {
   let pokemonTypes = document.createElement("div");
   pokemonTypes.classList.add("types-container");
   getPokemonTypes(pokemonData).forEach(function (pokemonType) {
@@ -98,9 +101,9 @@ function setPokemonTypes(pokemonData, div) {
     container.append(type);
     pokemonTypes.append(container);
   });
-  setOverColor(pokemonTypes, div);
   return pokemonTypes;
 }
+
 function getPokemonTypes(pokemonData) {
   return pokemonData.types.map(function (type) {
     return type.type.name;
@@ -123,6 +126,11 @@ nextButton.addEventListener("click", function () {
     actualPokemons.offset += 1;
     setPokemonCards(actualPokemons);
   }
+  if (
+    actualPokemons.offset ===
+    Math.ceil(actualPokemons.pokemons.length / 25) - 1
+  ) {
+  }
 });
 
 backButton.addEventListener("click", function () {
@@ -139,7 +147,7 @@ searchInput.addEventListener("keypress", function (e) {
 });
 
 function setOverColor(pokemonTypesElement, div) {
-  div.addEventListener("mouseover", function (e) {
+  div.addEventListener("mouseover", function () {
     if (pokemonTypesElement.children.length === 2) {
       div.style.background = `linear-gradient(to bottom left, ${
         pokemonTypes[pokemonTypesElement.children[1].textContent.toLowerCase()]
@@ -155,3 +163,46 @@ function setOverColor(pokemonTypesElement, div) {
     div.removeAttribute("style");
   });
 }
+
+function setPanelInformation(div, pokemonData, name) {
+  const panelInformation = panel.querySelector(".panel-information");
+  div.addEventListener("click", function () {
+    showPanel();
+    panelInformation.innerHTML = `<span class="panel-name-id"></span>
+          <img src="" alt="pokemon image" class="panel-img" />
+          <div class="panel-types">
+            <span>Types</span>
+          </div>
+          <div class="panel-main-info">
+            <span>Height: </span>
+            <span>Weight: </span>
+          </div>`;
+    let pokemonName = panelInformation.querySelector(".panel-name-id");
+    let pokemonImg = panelInformation.querySelector(".panel-img");
+    let pokemonType = setPokemonTypes(pokemonData);
+    pokemonName.textContent = `${getStringUpperCase(name)} #${pokemonData.id}`;
+    pokemonImg.src =
+      pokemonData.sprites.other["official-artwork"].front_default;
+    panel.querySelector(".panel-types").append(pokemonType);
+    panel.querySelector(".panel-main-info").children[0].innerHTML +=
+      pokemonData.height / 10 + "mts";
+    panel.querySelector(".panel-main-info").children[1].innerHTML +=
+      pokemonData.weight / 10 + "kg";
+  });
+}
+
+function showPanel() {
+  main.classList.add("blur");
+  header.classList.add("blur");
+  panelBack.style.display = "flex";
+}
+
+function hidePanel() {
+  main.classList.remove("blur");
+  header.classList.remove("blur");
+  panelBack.style.display = "none";
+}
+
+closePanelBtn.addEventListener("click", function () {
+  hidePanel();
+});
