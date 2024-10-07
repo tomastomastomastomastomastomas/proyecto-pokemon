@@ -278,8 +278,37 @@ main {
   }
 }
 @media (min-width: 1024px) {
+  .back-button,
+  .next-button {
+    position: absolute;
+    top: 47%;
+    transition: all 0.1s ease-in;
+  }
+  .back-button:hover,
+  .next-button:hover {
+    color: #f4f4f4;
+    background-color: #201d1d;
+  }
+  .back-button {
+    left: 25px;
+  }
+  .next-button {
+    right: 25px;
+  }
   .search-container {
     right: 50%;
     transform: translateX(50%);
+  }
+  .search-button {
+    transition: all 0.1s ease-in;
+  }
+  .search-button i {
+    transition: all 0.1s ease-in;
+  }
+  .search-button:hover > i {
+    color: #f4f4f4;
+  }
+  .search-button:hover {
+    background-color: #201d1d;
   }
 }

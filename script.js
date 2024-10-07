@@ -31,6 +31,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 searchButton.addEventListener("click", function () {
+  searchPokemon();
+});
+
+function searchPokemon() {
   actualPokemons.pokemons = [];
   globalPokemonData.results.forEach(function (value) {
     if (value.name.includes(searchInput.value)) {
@@ -39,7 +43,7 @@ searchButton.addEventListener("click", function () {
   });
   actualPokemons.offset = 0;
   setPokemonCards(actualPokemons);
-});
+}
 
 async function setPokemonCards(pokemons) {
   cards.innerHTML = "";
@@ -123,5 +127,11 @@ backButton.addEventListener("click", function () {
   if (actualPokemons.offset > 0) {
     actualPokemons.offset -= 1;
     setPokemonCards(actualPokemons);
+  }
+});
+
+searchInput.addEventListener("keypress", function (e) {
+  if (e.key == "Enter") {
+    searchPokemon();
   }
 });
