@@ -12,6 +12,8 @@ const header = document.querySelector("header");
 const panel = document.querySelector(".panel-information-container");
 const closePanelButton = document.querySelector(".panel-close-btn");
 const panelBack = document.querySelector(".panel-back");
+const showButton = document.querySelector(".filter-show-button");
+const filterPanel = document.querySelector(".filters-container");
 
 let globalPokemonData = [];
 getPokemonInformation(completeDataUrl).then((data) => {
@@ -179,7 +181,7 @@ backButton.addEventListener("click", function () {
 });
 
 searchInput.addEventListener("keypress", function (e) {
-  if (e.key == "Enter") {
+  if (e.key === "Enter") {
     searchPokemon(searchInput.value);
   }
 });
@@ -243,4 +245,8 @@ function hidePanel() {
 
 closePanelButton.addEventListener("click", function () {
   hidePanel();
+});
+
+showButton.addEventListener("click", function () {
+  filterPanel.classList.toggle("filter-show");
 });

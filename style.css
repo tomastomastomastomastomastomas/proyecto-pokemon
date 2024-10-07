@@ -21,7 +21,7 @@ header {
 }
 main {
   position: relative;
-  padding: 25px 35px;
+  padding: 0 35px 25px 35px;
 }
 .logo {
   position: absolute;
@@ -353,6 +353,48 @@ main {
     transform: rotate(360deg);
   }
 }
+
+.filters-container {
+  position: fixed;
+  left: 100%;
+  top: 110px;
+  z-index: 3;
+  width: 150px;
+  height: 150px;
+  transition: transform 0.3s ease-in;
+  background-color: #8b0c0c;
+  border-radius: 0 0 0 15px;
+}
+.filter-show-button {
+  position: absolute;
+  transform: translateX(-99%);
+  font-weight: 600;
+  font-size: 1.25em;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 100% 0 0 100%;
+  cursor: pointer;
+  background-color: #8b0c0c;
+  color: #f4f4f4;
+}
+.filter-show-icon {
+  width: 10px;
+  height: 10px;
+}
+.filter-show {
+  animation: fade-left 0.4s;
+  transform: translateX(-100%);
+}
+
+@keyframes fade-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 @media (min-width: 768px) {
   .back-button,
   .next-button {
