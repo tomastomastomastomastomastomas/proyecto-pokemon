@@ -328,7 +328,14 @@ main {
 .blur {
   filter: blur(10px);
 }
-
+.filter-element {
+  padding: 5px;
+  background-color: #f4f4f4;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  border-radius: 5px;
+}
 @keyframes rotate {
   0% {
     transform: rotate(0deg);
@@ -372,7 +379,7 @@ main {
   .back-button,
   .next-button {
     position: absolute;
-    top: 30px;
+    top: 40px;
     transition: all 0.1s ease-in;
   }
   .back-button:hover,
