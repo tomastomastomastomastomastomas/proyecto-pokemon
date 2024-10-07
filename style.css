@@ -25,8 +25,8 @@ main {
 }
 .logo {
   position: absolute;
-  height: 50px;
-  width: 50px;
+  height: 60px;
+  min-width: 60px;
   top: 50%;
   transform: translateY(-50%);
   left: 10px;
@@ -36,7 +36,7 @@ main {
   border-radius: 10px;
   padding: 10px;
   content: "";
-  width: 200px;
+  width: 143px;
 }
 .search-button-icon {
   font-weight: 500;
@@ -48,15 +48,15 @@ main {
   gap: 10px;
   display: flex;
   align-items: center;
-  right: 20px;
-  width: 50%;
+  right: 14px;
+  width: 220px;
 }
 .search-button {
   background-color: rgb(236, 236, 236);
   border: 2px solid black;
   border-radius: 100%;
-  width: 50px;
-  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
   font-size: 1.25em;
   cursor: pointer;
 }
@@ -223,6 +223,7 @@ main {
   display: flex;
   align-items: center;
   width: 100%;
+  min-height: 100vh;
   height: 105%;
   top: -9px;
   background: linear-gradient(to bottom left, white, black);
@@ -233,7 +234,7 @@ main {
 .loading > img {
   position: absolute;
   top: 200px;
-  left: 50%;
+  left: 45%;
   transform: translateX(-50%);
   animation: rotate 1.2s infinite;
 }
@@ -261,10 +262,24 @@ main {
     font-size: 1.25em;
   }
   .search-container {
-    gap: 10px;
-    width: 50%;
-    right: 20px;
+    gap: 20px;
+    width: 400px;
+    right: 30px;
+  }
+  .logo {
+    height: 70px;
+  }
+  .search-input {
+    width: 320px;
+  }
+  .search-container::before,
+  .search-container::after {
+    width: 114%;
   }
 }
 @media (min-width: 1024px) {
+  .search-container {
+    right: 50%;
+    transform: translateX(50%);
+  }
 }
