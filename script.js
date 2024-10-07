@@ -41,6 +41,7 @@ searchButton.addEventListener("click", function () {
 
 function searchPokemon(search) {
   searchInput.value = "";
+  clearFilter();
   actualPokemons.pokemons = [];
   globalPokemonData.results.forEach(function (value) {
     if (value.name.includes(search)) {
@@ -55,7 +56,6 @@ function searchPokemon(search) {
 }
 
 function addFilterElement(search) {
-  clearFilter();
   let span = document.createElement("span");
   span.innerHTML = `<button class="filter-close-btn">
         <i class="fa-solid fa-x filter-close-icon"></i>
