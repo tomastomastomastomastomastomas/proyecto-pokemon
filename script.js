@@ -16,12 +16,11 @@ getPokemonInformation(completeDataUrl)
 let actualPokemons = { pokemons: [], offset: 0 };
 
 function getPokemonInformation(url) {
-  loading.style.display = "flex";
   return fetch(url)
     .then((response) => response.json())
-    .catch("Error fetching the api")
-    .finally(() => (loading.style.display = "none"));
+    .catch("Error fetching the api");
 }
+//
 
 document.addEventListener("DOMContentLoaded", function () {
   getPokemonInformation(completeDataUrl).then((data) => {
@@ -44,30 +43,40 @@ searchButton.addEventListener("click", function () {
 
 async function setPokemonCards(pokemons) {
   cards.innerHTML = "";
+  loading.style.display = "flex";
+  let pokemonPromises = [];
   for (let i = pokemons.offset * 25; i < pokemons.offset * 25 + 25; i++) {
     if (!pokemons.pokemons[i]) {
       break;
     }
-    setPokemonCard(pokemons.pokemons[i].url, pokemons.pokemons[i].name);
+    pokemonPromises.push(
+      setPokemonCard(pokemons.pokemons[i].url, pokemons.pokemons[i].name)
+    );
   }
+  Promise.all(pokemonPromises).finally(() => {
+    loading.style.display = "none";
+  });
 }
 
 async function setPokemonCard(url, name) {
-  let div = document.createElement("div");
-  div.classList.add("pokemon-card");
-  cards.append(div);
+  return new Promise((resolve, reject) => {
+    let div = document.createElement("div");
+    div.classList.add("pokemon-card");
+    cards.append(div);
+    getPokemonInformation(url).then((pokemonData) => {
+      let pokemonName = document.createElement("span");
+      let pokemonImg = document.createElement("img");
+      pokemonName.textContent = getStringUpperCase(name);
+      pokemonImg.src =
+        pokemonData.sprites.other["official-artwork"].front_default;
+      let pokemonType = setPokemonTypes(pokemonData);
 
-  let pokemonData = await getPokemonInformation(url);
-  let pokemonName = document.createElement("span");
-  let pokemonImg = document.createElement("img");
-
-  pokemonName.textContent = getStringUpperCase(name);
-  pokemonImg.src = pokemonData.sprites.other["official-artwork"].front_default;
-  let pokemonType = setPokemonTypes(pokemonData);
-
-  div.append(pokemonImg);
-  div.append(pokemonName);
-  div.append(pokemonType);
+      div.append(pokemonImg);
+      div.append(pokemonName);
+      div.append(pokemonType);
+      resolve();
+    });
+  });
 }
 
 function setPokemonTypes(pokemonData) {
