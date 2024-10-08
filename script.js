@@ -100,6 +100,7 @@ async function setPokemonCards(pokemons) {
   if (pokemons.pokemons.length === 0){
     notFound.style.display = "flex"
     loading.style.display = "none";
+    nextButton.style.display = "none"
     return
   }
   else{
@@ -197,15 +198,17 @@ searchInput.addEventListener("keypress", function (e) {
 
 function setOverColor(pokemonTypesElement, div) {
   div.addEventListener("mouseover", function () {
-    if (pokemonTypesElement.children.length === 2) {
-      div.style.background = `linear-gradient(to bottom left, ${
-        pokemonTypes[pokemonTypesElement.children[1].textContent.toLowerCase()]
-      }, ${
-        pokemonTypes[pokemonTypesElement.children[0].textContent.toLowerCase()]
-      })`;
-    } else {
-      div.style.background =
-        pokemonTypes[pokemonTypesElement.children[0].textContent.toLowerCase()];
+    if(window.screen.width >= 1024){
+      if (pokemonTypesElement.children.length === 2) {
+        div.style.background = `linear-gradient(to bottom left, ${
+          pokemonTypes[pokemonTypesElement.children[1].textContent.toLowerCase()]
+        }, ${
+          pokemonTypes[pokemonTypesElement.children[0].textContent.toLowerCase()]
+        })`;
+      } else {
+        div.style.background =
+          pokemonTypes[pokemonTypesElement.children[0].textContent.toLowerCase()];
+      }
     }
   });
   div.addEventListener("mouseleave", function () {
