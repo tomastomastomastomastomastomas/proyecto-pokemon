@@ -14,7 +14,7 @@
   </head>
   <body>
     <header>
-      <img class="logo" src="images/pokemon-icon.svg" alt="pokemon logo" />
+      <img class="logo" src="images/pokedex-logo.svg" alt="pokemon logo" />
       <div class="search-container">
         <input
           class="search-input"
@@ -25,6 +25,14 @@
           <i class="fa-solid fa-magnifying-glass search-button-icon"></i>
         </button>
       </div>
+      <div class="filters-container">
+        <button class="filter-show-button">
+          <i class="fa-solid fa-chevron-left filter-show-icon"></i>
+        </button>
+        <div class="type-filter"></div>
+        <div class="generation-filter"></div>
+        <div class="type-filter"></div>
+      </div>
     </header>
     <main>
       <div class="cards-container"></div>
@@ -34,9 +42,23 @@
         ><button class="next-button"><i class="fa-solid fa-share"></i></button>
       </div>
       <div class="loading">
-        <i class="fa-solid fa-circle-notch fa-spin fa-spin-reverse"></i>
+        <img src="images/pokemon-icon.svg" alt="pokemon logo" />
+      </div>
+      <div class="not-found">
+        <div>
+          <img src="images/not-found-img.png" class="fa-bounce" alt="">
+        </div>
+        <span>The pokemon has not been found</span>
       </div>
     </main>
+    <div class="panel-back">
+      <div class="panel-information-container">
+        <div class="panel-information"></div>
+        <button class="panel-close-btn">
+          <i class="fa-solid fa-x panel-close-icon"></i>
+        </button>
+      </div>
+    </div>
     <script src="https://kit.fontawesome.com/b89abaf60d.js"></script>
     <script src="script.js" type="module"></script>
   </body>
