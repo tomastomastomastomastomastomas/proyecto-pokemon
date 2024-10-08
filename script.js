@@ -14,6 +14,7 @@ const closePanelButton = document.querySelector(".panel-close-btn");
 const panelBack = document.querySelector(".panel-back");
 const showButton = document.querySelector(".filter-show-button");
 const filterPanel = document.querySelector(".filters-container");
+const notFound = document.querySelector(".not-found")
 
 let globalPokemonData = [];
 getPokemonInformation(completeDataUrl).then((data) => {
@@ -81,11 +82,11 @@ function clearFilter() {
 async function setPokemonCards(pokemons) {
   cards.innerHTML = "";
   loading.style.display = "flex";
-  backButton.style.opacity = "50%";
+  backButton.style.display = "none";
   if (pokemons.offset === Math.ceil(pokemons.pokemons.length / 25) - 1) {
-    nextButton.style.opacity = "50%";
+    nextButton.style.display = "none";
   } else {
-    nextButton.style.opacity = "100%";
+    nextButton.style.display = "flex";
   }
   let pokemonPromises = [];
   for (let i = pokemons.offset * 25; i < pokemons.offset * 25 + 25; i++) {
@@ -95,6 +96,14 @@ async function setPokemonCards(pokemons) {
     pokemonPromises.push(
       setPokemonCard(pokemons.pokemons[i].url, pokemons.pokemons[i].name)
     );
+  }
+  if (pokemons.pokemons.length === 0){
+    notFound.style.display = "flex"
+    loading.style.display = "none";
+    return
+  }
+  else{
+    notFound.style.display = "none"
   }
   Promise.all(pokemonPromises).finally(() => {
     loading.style.display = "none";
@@ -159,13 +168,13 @@ nextButton.addEventListener("click", function () {
   ) {
     actualPokemons.offset += 1;
     setPokemonCards(actualPokemons);
-    backButton.style.opacity = "100%";
+    backButton.style.display = "flex";
   }
   if (
     actualPokemons.offset ===
     Math.ceil(actualPokemons.pokemons.length / 25) - 1
   ) {
-    nextButton.style.opacity = "50%";
+    nextButton.style.display = "none";
   }
 });
 
@@ -173,10 +182,10 @@ backButton.addEventListener("click", function () {
   if (actualPokemons.offset > 0) {
     actualPokemons.offset -= 1;
     setPokemonCards(actualPokemons);
-    nextButton.style.opacity = "100%";
+    nextButton.style.opacity = "flex";
   }
   if (actualPokemons.offset === 0) {
-    backButton.style.opacity = "50%";
+    backButton.style.opacity = "none";
   }
 });
 
