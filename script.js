@@ -82,7 +82,9 @@ function clearFilter() {
 async function setPokemonCards(pokemons) {
   cards.innerHTML = "";
   loading.style.display = "flex";
-  backButton.style.display = "none";
+  if (pokemons.offset === 0){
+    backButton.style.display = "none";
+  }
   if (pokemons.offset === Math.ceil(pokemons.pokemons.length / 25) - 1) {
     nextButton.style.display = "none";
   } else {
